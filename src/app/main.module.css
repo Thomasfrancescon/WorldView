@@ -1,0 +1,9 @@
+.responsive {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.background {
+  background-image: url('https://cdt51.media.tourinsoft.eu/upload/Ciel-etoile-httpspixabay.comfrvoie-lact-C3-A9e-ciel--C3-A9toil-C3-A9-2695569.jpg');
+}
