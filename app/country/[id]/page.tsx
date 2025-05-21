@@ -4,11 +4,12 @@ import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { notFound } from "next/navigation"
 import { fetchUserData } from "@/lib/api/request/request"
+import { Country } from "@/lib/types/country"
 
 export default async function CountryPage({ params }: { params: { id: string } }) {
   const param = await params
-  const countryData = await fetchUserData(param.id)
-  const country = Array.isArray(countryData) ? countryData[0] : countryData
+  const countryData = await fetchUserData(param.id) as Country | Country[]
+  const country: Country = Array.isArray(countryData) ? countryData[0] : countryData
 
   if (!country) {
     notFound()
@@ -66,9 +67,9 @@ export default async function CountryPage({ params }: { params: { id: string } }
             <p className="flex justify-between">
               <span>Capitale :</span>
               <span className="font-semibold">{country.capital?.join(", ") || "N/A"}</span>
-            </p>TypeError: Cannot read properties of undefined (reading 'common')
+            </p>TypeError: Cannot read properties of undefined (reading &apos;common&apos;)
             <p className="flex justify-between">
-              <span>Nombre d'habitants :</span>
+              <span>Nombre d&apos;habitants :</span>
               <span className="font-semibold">{country.population.toLocaleString()}</span>
             </p>
             <p className="flex justify-between">
@@ -86,7 +87,7 @@ export default async function CountryPage({ params }: { params: { id: string } }
               <span className="font-semibold">{country.independent ? "Oui" : "Non"}</span>
             </p>
             <p className="flex justify-between">
-              <span>Membre de l'ONU :</span>
+              <span>Membre de l&apos;ONU :</span>
               <span className="font-semibold">{country.unMember ? "Oui" : "Non"}</span>
             </p>
             <p className="flex justify-between">
