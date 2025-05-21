@@ -6,12 +6,8 @@ import { notFound } from "next/navigation"
 import { fetchUserData } from "@/lib/api/request/request"
 import { Country } from "@/lib/types/country"
 
-type PageProps = {
-  params: Promise<{ id: string }>
-  searchParams?: { [key: string]: string | string[] | undefined }
-}
 
-export default async function CountryPage({ params }: PageProps) {
+export default async function CountryPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params
   const countryData = await fetchUserData(resolvedParams.id) as Country | Country[]
   const country: Country = Array.isArray(countryData) ? countryData[0] : countryData
