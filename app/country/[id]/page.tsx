@@ -6,7 +6,7 @@ import { notFound } from "next/navigation"
 import { fetchUserData } from "@/lib/api/request/request"
 import { Country } from "@/lib/types/country"
 
-export default async function CountryPage({ params }: { params: { id: string } }) {
+export default async function CountryPage(params: { id: string }) {
   const countryData = await fetchUserData(params.id) as Country | Country[]
   const country: Country = Array.isArray(countryData) ? countryData[0] : countryData
 
