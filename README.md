@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 
 ```
-## go to [  ]
+## go to [https://world-view-git-main-thomas-projects-b09911a6.vercel.app?_vercel_share=OIhaw8d2licSpBQxH9oGtKuKy97u5KQr]
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
