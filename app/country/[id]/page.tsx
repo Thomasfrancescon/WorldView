@@ -7,8 +7,7 @@ import { fetchUserData } from "@/lib/api/request/request"
 import { Country } from "@/lib/types/country"
 
 export default async function CountryPage({ params }: { params: { id: string } }) {
-  const param = await params
-  const countryData = await fetchUserData(param.id) as Country | Country[]
+  const countryData = await fetchUserData(params.id) as Country | Country[]
   const country: Country = Array.isArray(countryData) ? countryData[0] : countryData
 
   if (!country) {
