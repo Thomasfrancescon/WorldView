@@ -95,7 +95,7 @@ export default async function CountryPage({ params }: { params: { id: string } }
               <span className="font-semibold">
                 {country.currencies
                   ? Object.values(country.currencies)
-                      .map((curr: any) => `${curr.name} (${curr.symbol})`)
+                      .map((curr: { name: string; symbol: string }) => `${curr.name} (${curr.symbol})`)
                       .join(", ")
                   : "N/A"}
               </span>
