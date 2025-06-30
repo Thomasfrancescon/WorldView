@@ -19,9 +19,21 @@ interface Country {
 }
 
 export const fetchUsersData = async (): Promise<Country[]> => {
-  return await api.get('/all').then((response: { data: Country[] }) => response.data)
+  return (
+    await api.get('/all/?fields=name,region,population,capital,flags,cca3').then((response: { data: Country[] }) => response.data)
+    .catch((error: any) => {
+      console.error('Error fetching country data with all:', error)
+      return []
+    })
+  )
 }
 
 export const fetchUserData = async (ccn3: string | undefined): Promise<Country | Country[]> => {
-  return await api.get('/alpha/' + ccn3).then((response: { data: Country | Country[] }) => response.data)
+  return (
+    await api.get('/alpha/' + ccn3).then((response: { data: Country | Country[] }) => response.data)
+    .catch((error: any) => {
+      console.error('Error fetching country data with ccn3:', error)
+      return []
+    })
+  )
 }
