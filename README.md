@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+The app uses the [REST Countries v5 API](https://restcountries.com/docs/countries), which requires an API key.
+Create one at [restcountries.com/sign-up](https://restcountries.com/sign-up) and add it to `.env.local` (and to your Vercel environment variables):
+
+```bash
+REST_COUNTRIES_API_KEY=your_key
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev

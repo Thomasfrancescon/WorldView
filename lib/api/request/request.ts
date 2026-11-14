@@ -1,26 +1,10 @@
-import { api } from '../ApiServices'
+import axios from 'axios'
+import { Country } from '@/lib/types/country'
 
-interface CountryName {
-  common: string;
-  official: string;
-}
-
-interface Country {
-  name: CountryName;
-  flags?: { png: string };
-  capital?: string[];
-  region: string;
-  subregion?: string;
-  population: number;
-  area?: number;
-  tld?: string[];
-  nativeName?: string;
-  cca3: string;
-}
-
+// Appelé depuis le navigateur : passe par la route /api/countries
 export const fetchUsersData = async (): Promise<Country[]> => {
   return (
-    await api.get('/all/?fields=name,region,population,capital,flags,cca3').then((response: { data: Country[] }) => response.data)
+    await axios.get('/api/countries').then((response: { data: Country[] }) => response.data)
     .catch((error: Error | unknown) => {
       console.error('Error fetching country data with all:', error)
       return []
@@ -28,11 +12,14 @@ export const fetchUsersData = async (): Promise<Country[]> => {
   )
 }
 
-export const fetchUserData = async (ccn3: string | undefined): Promise<Country | Country[]> => {
+// Appelé depuis un Server Component : interroge l'API directement
+export const fetchUserData = async (cca3: string | undefined): Promise<Country | Country[]> => {
+  if (!cca3) return []
+  const { getCountryByCode } = await import('../ApiServices')
   return (
-    await api.get('/alpha/' + ccn3).then((response: { data: Country | Country[] }) => response.data)
+    await getCountryByCode(cca3).then((country) => country ?? [])
     .catch((error: Error | unknown) => {
-      console.error('Error fetching country data with ccn3:', error)
+      console.error('Error fetching country data with cca3:', error)
       return []
     })
   )
